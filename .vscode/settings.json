@@ -1,0 +1,95 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "internal-a12d6f93bc30447f9a5b4b7c0642d636-528210063.ap-southeast-1.elb.amazonaws.com",
+            "port": 4000,
+            "driver": "MySQL",
+            "name": "Mobius PS2",
+            "username": "dbuser",
+            "password": "df5aARSMfwQdWV42",
+            "database": ""
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "internal-a6ed17596edc24b9889079a6724b48aa-1052602913.ap-southeast-1.elb.amazonaws.com",
+            "port": 4000,
+            "driver": "MySQL",
+            "name": "Mobius UAT",
+            "username": "dbuser",
+            "password": "df5aARSMfwQdWV42",
+            "database": ""
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "internal-ac898e37ceb3549ffafe1b2903c2d9e1-1704471706.ap-southeast-1.elb.amazonaws.com",
+            "port": 4000,
+            "driver": "MySQL",
+            "name": "Mobius SIT",
+            "username": "dbuser",
+            "password": "df5aARSMfwQdWV42",
+            "database": ""
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "internal-aad85db51859244fd9087d157b432949-1123027701.ap-southeast-1.elb.amazonaws.com",
+            "port": 4000,
+            "driver": "MySQL",
+            "name": "Mobius Production",
+            "database": "",
+            "username": "acn_readonly",
+            "password": "uW1+uizmE0#bN2Fv"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "internal-afc9c06bf7dac4d02b838e508282e6ae-290782811.ap-southeast-1.elb.amazonaws.com",
+            "port": 4000,
+            "driver": "MySQL",
+            "name": "Mobius GPE",
+            "database": "",
+            "username": "dbuser",
+            "password": "df5aARSMfwQdWV42"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "internal-a60c08e932c2249128b1c09a2b8449b8-1557873531.ap-southeast-1.elb.amazonaws.com",
+            "port": 4000,
+            "driver": "MySQL",
+            "name": "Mobius TRG",
+            "database": "",
+            "username": "dbuser",
+            "password": "df5aARSMfwQdWV42"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "internal-ad1850f50c10443d7affaaf38e86c572-1084879366.ap-southeast-1.elb.amazonaws.com",
+            "port": 4000,
+            "driver": "MySQL",
+            "name": "Mobius PT",
+            "database": "",
+            "username": "dbuser",
+            "password": "df5aARSMfwQdWV42"
+        }
+    ]
+}
