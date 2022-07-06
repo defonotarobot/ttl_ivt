@@ -1,0 +1,63 @@
+{
+  "env": "ps2",
+  "prod": {
+    "dbconfig": {
+      "user": "acn_readonly",
+      "password": "uW1+uizmE0#bN2Fv",
+      "host": "internal-aad85db51859244fd9087d157b432949-1123027701.ap-southeast-1.elb.amazonaws.com",
+      "port": 4000
+    },
+    "fileconfig": {
+      "csv_file_path": "../data_prod/",
+      "table_list_file": "table_list.txt"
+    }
+  },
+  "ps2": {
+    "dbconfig": {
+      "user": "dbuser",
+      "password": "df5aARSMfwQdWV42",
+      "host": "internal-a12d6f93bc30447f9a5b4b7c0642d636-528210063.ap-southeast-1.elb.amazonaws.com",
+      "port": 4000
+    },
+    "fileconfig": {
+      "csv_file_path": "../data_ps2/",
+      "table_list_file": "table_list.txt"
+    }
+  },
+  "sit": {
+    "dbconfig": {
+      "user": "dbuser",
+      "password": "df5aARSMfwQdWV42",
+      "host": "internal-ac898e37ceb3549ffafe1b2903c2d9e1-1704471706.ap-southeast-1.elb.amazonaws.com",
+      "port": 4000
+    },
+    "fileconfig": {
+      "csv_file_path": "../data_sit/",
+      "table_list_file": "table_list.txt"
+    }
+  },
+  "uat": {
+    "dbconfig": {
+      "user": "dbuser",
+      "password": "df5aARSMfwQdWV42",
+      "host": "internal-a6ed17596edc24b9889079a6724b48aa-1052602913.ap-southeast-1.elb.amazonaws.com",
+      "port": 4000
+    },
+    "fileconfig": {
+      "csv_file_path": "../data_uat/",
+      "table_list_file": "table_list.txt"
+    }
+  },
+  "gpe": {
+    "dbconfig": {
+      "user": "dbuser",
+      "password": "df5aARSMfwQdWV42",
+      "host": "internal-afc9c06bf7dac4d02b838e508282e6ae-290782811.ap-southeast-1.elb.amazonaws.com",
+      "port": 4000
+    },
+    "fileconfig": {
+      "csv_file_path": "../data_gpe/",
+      "table_list_file": "table_list.txt"
+    }
+  }
+}
