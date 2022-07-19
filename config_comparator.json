@@ -13,12 +13,6 @@
     "matched": "/matched/",
     "unmatched": "/unmatched/"
   },
-  "faulty_dir": {
-    "dir": "../faulty/"
-  },
-  "clean_dir": {
-    "dir": "../clean/"
-  },
   "exception_tables": {
     "clmpar.clpimvp": "civmke,civmod,civsrl,civyr,civccn,civrgn",
     "clmpar.clpmodp": "lmdpcd",
