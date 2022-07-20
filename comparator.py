@@ -108,7 +108,7 @@ class Comparator:
         print("Total Tables: {0}".format(total_tables))
         print("Total Output Files: {0}".format(total_files))
 
-        print(">>>>>End Program<<<<<")
+        print(">>>>>End Comparator<<<<<")
 
     def __compare(self, merged_table, column_number, table_key):
         dfc = merged_table.drop(table_key, axis=1)
