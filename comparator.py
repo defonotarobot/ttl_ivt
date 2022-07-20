@@ -15,8 +15,6 @@ class Comparator:
         with open("config_comparator.json") as json_config_file:
             config = json.load(json_config_file)
         default_unique_column = config["default_unique_column"]
-        config_faulty = config["faulty_dir"]
-        config_clean = config["clean_dir"]
         exception_tables = config["exception_tables"]
 
         # Initialize table options
