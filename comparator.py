@@ -3,36 +3,39 @@ import pandas as pd
 import numpy as np
 import os
 import json
+from datetime import datetime
 import xlsxwriter
 
 class Comparator:
     def __init__(self):
         pass
 
-    def compare(self, config_filename: str):
+    def compare(self, path1, path2, env1, env2):
         # Initialize variables from given config file
-        with open(config_filename) as json_config_file:
+        with open("config_comparator.json") as json_config_file:
             config = json.load(json_config_file)
-        config_source = config["source"]
-        config_target = config["target"]
         default_unique_column = config["default_unique_column"]
         config_faulty = config["faulty_dir"]
         config_clean = config["clean_dir"]
-        config_output = config["output"]
         exception_tables = config["exception_tables"]
 
         # Initialize table options
         pd.options.mode.chained_assignment = None  # default='warn'
         pd.set_option('display.max_columns', 500)
 
-        directory = os.fsencode(config_source["dir"])
-        path1 = config_source["dir"]
-        path2 = config_target["dir"]
-        env1 = config_source["env"]
-        env2 = config_target["env"]
+        directory = os.fsencode(path1)
 
         total_tables = 0
         total_files = 0
+
+        output_directory = "../compare_" + env1 + "_" + env2 + "_" + datetime.now().strftime("%d%m%y") + "/"
+
+        # Create output directory if it doesn't already exist
+        if not os.path.exists(output_directory):
+            os.makedirs(output_directory)
+            os.makedirs(output_directory + "/matched/")
+            os.makedirs(output_directory + "/unmatched/")
+
         for table in os.listdir(directory):
             try:
                 file_name = os.fsdecode(table)
@@ -81,13 +84,12 @@ class Comparator:
 
                     almost_done = self.__union(data, env1, env2, df1, df2, pri_key)
                     done = self.__prefix(almost_done, env1, env2)
-
-                    output_path = config_output["dir"]
-
+                    
+                    output_path = output_directory
                     if isMatched:
-                        output_path += config_output["matched"]
+                        output_path += "/matched/"
                     else:
-                        output_path += config_output["unmatched"]
+                        output_path += "/unmatched/"
 
                     with pd.ExcelWriter(output_path + env1 + '_' + env2 + '_' + table_name + '.xlsx') as writer:
                         df1.to_excel(writer, sheet_name=env1, index=False)
