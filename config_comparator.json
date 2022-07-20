@@ -1,11 +1,11 @@
 {
   "source": {
-    "dir": "../PS2_01072022/",
+    "dir": "../PS2_190722/",
     "env": "PS2"
   },
   "target": {
-    "dir": "../PROD_01072022/",
-    "env": "PROD"
+    "dir": "../UAT_190722/",
+    "env": "UAT"
   },
   "default_unique_column": "id",
   "output": {
