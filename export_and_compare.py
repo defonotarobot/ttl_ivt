@@ -1,6 +1,7 @@
 from comparator import Comparator
 from exporter import Exporter
 
+# Input (lower-case) names of two environments to compare
 source_env = "ps2"
 target_env = "uat"
 
