@@ -5,6 +5,7 @@ import os
 import json
 from datetime import datetime
 import xlsxwriter
+from color import color
 
 class Comparator:
     def __init__(self):
@@ -12,6 +13,7 @@ class Comparator:
 
     def compare(self, path1, path2, env1, env2):
         # Initialize variables from given config file
+        print(color.BOLD + color.CYAN + ">>>>>>>>>>>>>>>>>>>> START COMPARATOR <<<<<<<<<<<<<<<<<<<<" + color.END)
         with open("config_comparator.json") as json_config_file:
             config = json.load(json_config_file)
         default_unique_column = config["default_unique_column"]
@@ -27,6 +29,8 @@ class Comparator:
         total_files = 0
         total_matched = 0
         total_unmatched = 0
+        
+        matchResult = [color.BOLD + color.RED + "UNMATCHED" + color.END, color.BOLD + color.GREEN + "MATCHED" + color.END]
 
         output_directory = "../compare_" + env1 + "_" + env2 + "_" + datetime.now().strftime("%d%m%Y_%H%M_%p") + "/"
 
@@ -42,13 +46,13 @@ class Comparator:
                 table_name, ext = os.path.splitext(file_name)
                 file = '\\' + file_name
 
-                print("Table: " + table_name)
+                print("Comparing table: " + color.BOLD + "\"" + table_name + "\"" + color.END)
 
                 df1 = pd.read_csv(path1 + file, dtype=str).fillna('')
-                print("Loaded data: " + path1 + file)
+                print("Reading source data from: " + color.CYAN + path1 + file_name + color.END)
 
                 df2 = pd.read_csv(path2 + file, dtype=str).fillna('')
-                print("Loaded data: " + path2 + file)
+                print("Reading target data from: " + color.CYAN + path2 + file_name + color.END)
 
                 table_key = default_unique_column
 
@@ -76,12 +80,12 @@ class Comparator:
 
                     data = compare_result["data"]
                     isMatched = compare_result["isMatched"]
-                    print("Matching result for table {0} is {1}.".format(
-                        table_name, isMatched))
+
+                    print("Matching result for table " + color.BOLD + "\"{0}\"" + color.END + "is {1}".format(table_name, matchResult[isMatched]))
+                    # print("Matching result for table {0} is {1}.".format(table_name, isMatched))
 
                     if not isMatched:
-                        print("Unmatched Columns: {0}".format(
-                            compare_result["unMatchedColumns"]))
+                        print("Unmatched Columns: {0}".format(compare_result["unMatchedColumns"]))
                         total_unmatched += 1
                     else:
                         total_matched += 1
@@ -100,7 +104,7 @@ class Comparator:
                         df2.to_excel(writer, sheet_name=env2, index=False)
                         done.to_excel(writer, sheet_name='COM', index=False)
                     total_files += 1
-                    print("Write file for table {0} is completed.".format(table_name))
+                    print("Exported result file for the table " + color.BOLD + "\"{0}\"".format(table_name) + color.END)
                 else:
                     print("Can't find key for table {0}.".format(table_name))
             except Exception as error:
@@ -114,8 +118,7 @@ class Comparator:
         print("Total Unmatched: {0}".format(total_unmatched))
         print("Total Matched: {0}".format(total_matched))
 
-        print(">>>>>End Comparator<<<<<")
-
+        print(color.BOLD + color.CYAN + ">>>>>>>>>>>>>>>>>>>> END COMPARATOR <<<<<<<<<<<<<<<<<<<<" + color.END)
     def __compare(self, merged_table, column_number, table_key):
         dfc = merged_table.drop(table_key, axis=1)
         result = merged_table[[table_key]]
