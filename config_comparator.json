@@ -1,11 +1,11 @@
 {
   "source": {
-    "dir": "../data_ps2_20072022_957pm/",
-    "env": "ps2_new"
+    "dir": "../PS2_190722/",
+    "env": "PS2"
   },
   "target": {
-    "dir": "../data_ps2_20072022_903am/",
-    "env": "ps2_old"
+    "dir": "../UAT_190722/",
+    "env": "UAT"
   },
   "default_unique_column": "id",
   "output": {
