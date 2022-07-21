@@ -16,8 +16,6 @@ with open("config_comparator.json") as json_config_file:
 config_source = config["source"]
 config_target = config["target"]
 default_unique_column = config["default_unique_column"]
-config_faulty = config["faulty_dir"]
-config_clean = config["clean_dir"]
 config_output = config["output"]
 exception_tables = config["exception_tables"]
 

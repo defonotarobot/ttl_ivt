@@ -1,5 +1,5 @@
 {
-  "env": "prod",
+  "env": "ps2",
   "prod": {
     "dbconfig": {
       "user": "acn_readonly",
