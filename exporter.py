@@ -21,7 +21,7 @@ class Exporter:
         fileconfig = config["fileconfig"]
         dbconfig = config["dbconfig"]
         table_list_filepath = fileconfig["table_list_file"]
-        csv_file_path = "../data_" + env + "_" + datetime.now().strftime("%d%m%Y") + "/"
+        csv_file_path = "../data_" + env + "_" + datetime.now().strftime("%d%m%Y_%H%M_%p") + "/"
         total_tables = 0
         total_csv = 0
 

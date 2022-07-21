@@ -25,8 +25,10 @@ class Comparator:
 
         total_tables = 0
         total_files = 0
+        total_matched = 0
+        total_unmatched = 0
 
-        output_directory = "../compare_" + env1 + "_" + env2 + "_" + datetime.now().strftime("%d%m%y") + "/"
+        output_directory = "../compare_" + env1 + "_" + env2 + "_" + datetime.now().strftime("%d%m%Y_%H%M_%p") + "/"
 
         # Create output directory if it doesn't already exist
         if not os.path.exists(output_directory):
@@ -64,6 +66,7 @@ class Comparator:
                     if check_result["isComposite"] == True:
                         df1 = self.__insert_composite_pk(df1, check_result["keys"], pri_key)
                         df2 = self.__insert_composite_pk(df2, check_result["keys"], pri_key)
+                        # add the check key query in here?
 
                     dfx = df1.merge(df2, on=pri_key,
                                     how='outer')  # outer join on id
@@ -79,6 +82,9 @@ class Comparator:
                     if not isMatched:
                         print("Unmatched Columns: {0}".format(
                             compare_result["unMatchedColumns"]))
+                        total_unmatched += 1
+                    else:
+                        total_matched += 1
 
                     almost_done = self.__union(data, env1, env2, df1, df2, pri_key)
                     done = self.__prefix(almost_done, env1, env2)
@@ -105,6 +111,8 @@ class Comparator:
 
         print("Total Tables: {0}".format(total_tables))
         print("Total Output Files: {0}".format(total_files))
+        print("Total Unmatched: {0}".format(total_unmatched))
+        print("Total Matched: {0}".format(total_matched))
 
         print(">>>>>End Comparator<<<<<")
 
