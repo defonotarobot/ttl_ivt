@@ -54,7 +54,7 @@ class Exporter:
             sql = 'SELECT * from '
             output_file_path = '{0}{1}.csv'.format(csv_file_path, table_name)
 
-            print("Attempting to download the table \"" + color.BOLD + "{0}".format(table_name) + "\"" + color.END)
+            print("Attempting to download table: \"" + color.BOLD + "{0}".format(table_name) + "\"" + color.END)
             try:
                 cur.execute(sql + "%s" % table_name)
                 rows = cur.fetchall()
@@ -82,15 +82,15 @@ class Exporter:
                         csvwriter.writerow(row)
 
                     total_csv += 1
-                    print("Finished writing csv file for the table \"" + color.BOLD + "{0}".format(table_name) + "\"" + color.END)
+                    print("Table saved as CSV: \"" + color.BOLD + "{0}".format(table_name) + "\"" + color.END)
                 #else:
                 #    print("No rows found for table {0}".format(table_name))
 
             except Exception as error:
-                print(color.BOLD + color.RED + "Error occurred querying for the table {0}. - {1}".format(table_name, error) + color.END)
+                print(color.BOLD + color.RED + "Error occurred querying for the table {0}. - {1}".format(table_name, error) + color.END + "\n")
 
             total_tables += 1
-            print(".")
+            print(color.UNDERLINE + "Summary\n" + color.END)
 
         db.close()
 

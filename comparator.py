@@ -6,6 +6,10 @@ import json
 from datetime import datetime
 import xlsxwriter
 from color import color
+import time
+import threading
+import itertools
+import sys
 
 class Comparator:
     def __init__(self):
@@ -24,7 +28,8 @@ class Comparator:
         pd.set_option('display.max_columns', 500)
 
         directory = os.fsencode(path1)
-
+        
+        process_done = False
         total_tables = 0
         total_files = 0
         total_matched = 0
@@ -32,7 +37,7 @@ class Comparator:
         
         matchResult = [color.BOLD + color.RED + "UNMATCHED" + color.END, color.BOLD + color.GREEN + "MATCHED" + color.END]
 
-        output_directory = "../compare_" + env1 + "_" + env2 + "_" + datetime.now().strftime("%d%m%Y_%H%M_%p") + "/"
+        output_directory = "../compare_" + env1 + "_" + env2 + "_" + datetime.now().strftime("%d%m%Y_%H%M_%p")
 
         # Create output directory if it doesn't already exist
         if not os.path.exists(output_directory):
@@ -85,7 +90,7 @@ class Comparator:
                     # print("Matching result for table {0} is {1}.".format(table_name, isMatched))
 
                     if not isMatched:
-                        print("Unmatched Columns: {0}".format(compare_result["unMatchedColumns"]))
+                        print("Unmatched Columns: " + color.YELLOW + "{0}".format(compare_result["unMatchedColumns"]) + color.END + "\n")
                         total_unmatched += 1
                     else:
                         total_matched += 1
@@ -98,20 +103,33 @@ class Comparator:
                         output_path += "/matched/"
                     else:
                         output_path += "/unmatched/"
+                    
 
+                    print("Result location: \"" + output_path + "\"")
+                    print("Result file: \"" + env1 + '_' + env2 + '_' + table_name + '.xlsx\"')
+                    
+                    # t = threading.Thread(gg=self.__animate(process_done))
+                    # t.start()
+
+                    #long process here
+                    print("Exporting...\n")
+                    
                     with pd.ExcelWriter(output_path + env1 + '_' + env2 + '_' + table_name + '.xlsx') as writer:
                         df1.to_excel(writer, sheet_name=env1, index=False)
                         df2.to_excel(writer, sheet_name=env2, index=False)
                         done.to_excel(writer, sheet_name='COM', index=False)
                     total_files += 1
-                    print("Exported result file for the table " + color.BOLD + "\"{0}\"".format(table_name) + color.END)
+                    
+                    # process_done = True
+                    
+                    print("Exported result file for the table " + color.BOLD + "\"{0}\"".format(table_name) + color.END + "\n")
                 else:
                     print("Can't find key for table {0}.".format(table_name))
             except Exception as error:
                 print("Error occurred for table {0}. - {1}".format(table_name, error))
 
             total_tables += 1
-            print(".")
+            print(color.UNDERLINE + "Summary" + color.END)
 
         print("Total Tables: {0}".format(total_tables))
         print("Total Output Files: {0}".format(total_files))
@@ -212,3 +230,12 @@ class Comparator:
         result = pd.concat([result, composite_key_col], axis=1)
     
         return result
+
+    def __animate(self, process_done):
+        for c in itertools.cycle(['|', '/', '-', '\\']):
+            if process_done:
+                break
+            sys.stdout.write('\rExporting...' + c)
+            sys.stdout.flush()
+            time.sleep(0.1)
+        sys.stdout.write('\Exported!     ')
