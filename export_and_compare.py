@@ -13,7 +13,7 @@ target_env_naming = "sit"
 
 # Export tables from desired environment, comment out if you dont need to export
 exporter = Exporter()
-source_filepath = exporter.export(source_env,source_env_naming, True)
+source_filepath = exporter.export(source_env,source_env_naming)
 target_filepath = exporter.export(target_env,target_env_naming)
 
 # uncomment these and put path if you dont need to export

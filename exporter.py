@@ -18,6 +18,13 @@ class Exporter:
     # to True when calling.
     def export(self, env: str, env_naming: str, use_full_table_list = False):
         print(color.BOLD + color.CYAN + ">>>>>>>>>>>>>>>>>>>> START EXPORTER <<<<<<<<<<<<<<<<<<<<" + color.END)
+        
+        # If environment is prod, prompt user to switch VPN to prod, then switch back after exporting
+        if (env == "prod"):
+            while (True):
+                answer = str(input(color.BOLD + color.RED + "ACTION REQUIRED: " + color.END + "You're trying to export from prod database. Are you sure you're connected to the right VPN? Type 'y' to move on: "))
+                if answer.lower() == "y":
+                    break
 
         with open("config_exporter.json") as json_config_file:
             full_config = json.load(json_config_file)
@@ -106,6 +113,12 @@ class Exporter:
 
         print("Total listed tables: {0}".format(total_tables))
         print("Total CSV files exported: {0}".format(total_csv))
+
+        if (env == "prod"):
+            while (True):
+                answer = str(input(color.BOLD + color.RED + "ACTION REQUIRED: " + color.END + "If you are going to export from a non-prod database next, please switch your VPN to non-prod and then type 'y' to continue: "))
+                if answer.lower() == "y":
+                    break
 
         print(color.BOLD + color.CYAN + ">>>>>>>>>>>>>>>>>>>> END EXPORTER <<<<<<<<<<<<<<<<<<<<" + color.END)
 
