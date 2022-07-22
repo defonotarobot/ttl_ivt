@@ -10,8 +10,13 @@ from color import color
 class Exporter:
     def __init__(self):
         pass
-
-    def export(self, env: str, env_naming: str):
+    
+    # Function: export()
+    # -------------------
+    # Takes in an environment and a filename and exports the tables listed in "table_list.txt".
+    # If the user wants to export all tables, set the optional boolean parameter use_full_table_list
+    # to True when calling.
+    def export(self, env: str, env_naming: str, use_full_table_list = False):
         print(color.BOLD + color.CYAN + ">>>>>>>>>>>>>>>>>>>> START EXPORTER <<<<<<<<<<<<<<<<<<<<" + color.END)
 
         with open("config_exporter.json") as json_config_file:
@@ -23,7 +28,6 @@ class Exporter:
         config = full_config[env]
         fileconfig = config["fileconfig"]
         dbconfig = config["dbconfig"]
-        table_list_filepath = fileconfig["table_list_file"]
         csv_file_path = "../data_" + env_naming + "_" + datetime.now().strftime("%d%m%Y_%H%M_%p") + "/"
         total_tables = 0
         total_csv = 0
@@ -33,6 +37,10 @@ class Exporter:
             os.makedirs(csv_file_path)
 
         # Read Table List
+        table_list_filepath = "table_list.txt"
+        if (use_full_table_list):
+            table_list_filepath = "full_table_list.txt"
+
         table_list_file = open(table_list_filepath, 'r')
         table_list = table_list_file.readlines()
 

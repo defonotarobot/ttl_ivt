@@ -14,7 +14,12 @@ import sys
 class Comparator:
     def __init__(self):
         pass
-
+    
+    # Function: compare()
+    # -------------------
+    # Takes in filepaths to two folders, each containing excel tables and compares the
+    # values in each table. Returns a new folder, containing subfolders for tables that 
+    # matched/didn't match.
     def compare(self, path1, path2, env1, env2):
         # Initialize variables from given config file
         print(color.BOLD + color.CYAN + ">>>>>>>>>>>>>>>>>>>> START COMPARATOR <<<<<<<<<<<<<<<<<<<<" + color.END)
@@ -137,6 +142,7 @@ class Comparator:
         print("Total Matched: {0}".format(total_matched))
 
         print(color.BOLD + color.CYAN + ">>>>>>>>>>>>>>>>>>>> END COMPARATOR <<<<<<<<<<<<<<<<<<<<" + color.END)
+    
     def __compare(self, merged_table, column_number, table_key):
         dfc = merged_table.drop(table_key, axis=1)
         result = merged_table[[table_key]]
