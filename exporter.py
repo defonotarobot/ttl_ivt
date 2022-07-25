@@ -35,7 +35,7 @@ class Exporter:
         config = full_config[env]
         fileconfig = config["fileconfig"]
         dbconfig = config["dbconfig"]
-        csv_file_path = "../data_" + env_naming + "_" + datetime.now().strftime("%d%m%Y_%H%M_%p") + "/"
+        csv_file_path = "../data/data_" + env_naming + "_" + datetime.now().strftime("%d%m%Y_%H%M_%p") + "/"
         total_tables = 0
         total_csv = 0
 
