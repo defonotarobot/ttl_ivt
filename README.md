@@ -2,6 +2,4 @@
 ivt for environment syncing verifications
 
 
-Author: Theerat Leelasithorn
-
-Co-Autohers: Tee Monsereenusorn, Veerapat Sriarunrungrueang
+Author: Theerat Leelasithorn, Tee Monsereenusorn, Veerapat Sriarunrungrueang
