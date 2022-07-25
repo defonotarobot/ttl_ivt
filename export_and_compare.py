@@ -11,10 +11,13 @@ target_env = "sit"
 source_env_naming = "ps2"
 target_env_naming = "sit"
 
+# full table list
+use_full_table_list = False
+
 # Export tables from desired environment, comment out if you dont need to export
 exporter = Exporter()
-source_filepath = exporter.export(source_env,source_env_naming)
-target_filepath = exporter.export(target_env,target_env_naming)
+source_filepath = exporter.export(source_env,source_env_naming,use_full_table_list)
+target_filepath = exporter.export(target_env,target_env_naming,use_full_table_list)
 
 # uncomment these and put path if you dont need to export
 # source_filepath = "../data_ps2_20072022_957pm/"
