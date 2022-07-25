@@ -16,7 +16,7 @@ class Exporter:
     # Takes in an environment and a filename and exports the tables listed in "table_list.txt".
     # If the user wants to export all tables, set the optional boolean parameter use_full_table_list
     # to True when calling.
-    def export(self, env: str, env_naming: str, use_full_table_list = False):
+    def export(self, env: str, env_naming: str, use_full_table_list: bool):
         print(color.BOLD + color.CYAN + ">>>>>>>>>>>>>>>>>>>> START EXPORTER <<<<<<<<<<<<<<<<<<<<" + color.END)
         
         # If environment is prod, prompt user to switch VPN to prod, then switch back after exporting
@@ -35,7 +35,7 @@ class Exporter:
         config = full_config[env]
         fileconfig = config["fileconfig"]
         dbconfig = config["dbconfig"]
-        csv_file_path = "../data_" + env_naming + "_" + datetime.now().strftime("%d%m%Y_%H%M_%p") + "/"
+        csv_file_path = "../data/data_" + env_naming + "_" + datetime.now().strftime("%d%m%Y_%H%M_%p") + "/"
         total_tables = 0
         total_csv = 0
 
@@ -51,7 +51,7 @@ class Exporter:
         table_list_file = open(table_list_filepath, 'r')
         table_list = table_list_file.readlines()
 
-        print("Exported table list from the file \"" + color.BOLD + "{0}".format(table_list_filepath) + "\"" + color.END)
+        print("Exporting table list from the file \"" + color.BOLD + "{0}".format(table_list_filepath) + "\"" + color.END)
 
         db_opts = dbconfig
 
@@ -59,7 +59,7 @@ class Exporter:
 
         db = pymysql.connect(**db_opts)
         print("dB connection " + color.BOLD + color.GREEN + "ESTABLISHED" + color.END)
-        print("Exporting from " + color.BOLD + color.UNDERLINE + full_config["env"].upper() + color.END)
+        print("Exporting from " + color.BOLD + color.UNDERLINE + env.upper() + color.END)
 
         for table_name in table_list:
             cur = db.cursor()

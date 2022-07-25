@@ -43,7 +43,7 @@ class Comparator:
         
         matchResult = [color.BOLD + color.RED + "UNMATCHED" + color.END, color.BOLD + color.GREEN + "MATCHED" + color.END]
 
-        output_directory = "../compare_" + env1 + "_" + env2 + "_" + datetime.now().strftime("%d%m%Y_%H%M_%p")
+        output_directory = "../compare/compare_" + env1 + "_" + env2 + "_" + datetime.now().strftime("%d%m%Y_%H%M_%p")
 
         # Create output directory if it doesn't already exist
         if not os.path.exists(output_directory):
