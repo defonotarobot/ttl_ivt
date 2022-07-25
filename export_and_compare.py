@@ -2,6 +2,11 @@ from tkinter import Y
 from comparator import Comparator
 from exporter import Exporter
 from datetime import datetime
+from key_updater import KeyUpdater
+
+# Updates all the primary and composite keys in the table
+keyUpdater = KeyUpdater()
+keyUpdater.updateKeys()
 
 start_time = datetime.now()
 # Input (lower-case) names of two environments to compare (do not mix up source/target)
