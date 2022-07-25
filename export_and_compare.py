@@ -21,13 +21,8 @@ use_full_table_list = False
 
 # Export tables from desired environment, comment out if you dont need to export
 exporter = Exporter()
-<<<<<<< HEAD
-source_filepath = exporter.export(source_env,source_env_naming, True)
-target_filepath = exporter.export(target_env,target_env_naming, True)
-=======
 source_filepath = exporter.export(source_env,source_env_naming,use_full_table_list)
 target_filepath = exporter.export(target_env,target_env_naming,use_full_table_list)
->>>>>>> 3f55cf755963d0fde8f98034de8f018955de21fe
 
 # uncomment these and put path if you dont need to export
 # source_filepath = "../data_ps2_20072022_957pm/"
