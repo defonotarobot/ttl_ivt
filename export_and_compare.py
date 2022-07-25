@@ -1,6 +1,11 @@
 from comparator import Comparator
 from exporter import Exporter
 from datetime import datetime
+from key_updater import KeyUpdater
+
+# Updates all the primary and composite keys in the table
+keyUpdater = KeyUpdater()
+keyUpdater.updateKeys()
 
 start_time = datetime.now()
 # Input (lower-case) names of two environments to compare (do not mix up source/target)
@@ -13,8 +18,8 @@ target_env_naming = "sit"
 
 # Export tables from desired environment, comment out if you dont need to export
 exporter = Exporter()
-source_filepath = exporter.export(source_env,source_env_naming)
-target_filepath = exporter.export(target_env,target_env_naming)
+source_filepath = exporter.export(source_env,source_env_naming, True)
+target_filepath = exporter.export(target_env,target_env_naming, True)
 
 # uncomment these and put path if you dont need to export
 # source_filepath = "../data_ps2_20072022_957pm/"

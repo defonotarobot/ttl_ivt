@@ -25,8 +25,9 @@ class Comparator:
         print(color.BOLD + color.CYAN + ">>>>>>>>>>>>>>>>>>>> START COMPARATOR <<<<<<<<<<<<<<<<<<<<" + color.END)
         with open("config_comparator.json") as json_config_file:
             config = json.load(json_config_file)
-        default_unique_column = config["default_unique_column"]
-        exception_tables = config["exception_tables"]
+
+        with open("key_table.json") as key_config:
+            keys = json.load(key_config)
 
         # Initialize table options
         pd.options.mode.chained_assignment = None  # default='warn'
@@ -64,10 +65,7 @@ class Comparator:
                 df2 = pd.read_csv(path2 + file, dtype=str).fillna('')
                 print("Reading target data from: " + color.CYAN + path2 + file_name + color.END)
 
-                table_key = default_unique_column
-
-                if table_name in exception_tables:
-                    table_key = exception_tables[table_name]
+                table_key = keys[table_name]
 
                 id_present = table_key in list(df1.columns)
 
