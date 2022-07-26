@@ -5,8 +5,8 @@ from datetime import datetime
 from key_updater import KeyUpdater
 
 # Updates all the primary and composite keys in the table
-keyUpdater = KeyUpdater()
-keyUpdater.updateKeys()
+# keyUpdater = KeyUpdater()
+# keyUpdater.updateKeys()
 
 start_time = datetime.now()
 # Input (lower-case) names of two environments to compare (do not mix up source/target)
@@ -18,7 +18,7 @@ source_env_naming = "ps2"
 target_env_naming = "sit"
 
 # full table list
-use_full_table_list = True
+use_full_table_list = False
 
 # Export tables from desired environment, comment out if you dont need to export
 exporter = Exporter()
